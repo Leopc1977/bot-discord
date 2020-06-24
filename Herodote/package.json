@@ -1,0 +1,7 @@
+{
+  "main": "index.js",
+  "dependencies": {
+    "better-sqlite3": "^7.0.1",
+    "discord.js": "11.4.2"
+  }
+}
