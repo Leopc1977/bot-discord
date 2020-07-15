@@ -3,6 +3,7 @@ const client = new Discord.Client();
 
 idSalonFR = "725293934858993744";
 idSalonIT = "725293964776833084";
+idSalonEN = "733021014476324904";
 
 apiKey = process.env.key;
 var options = {};
@@ -40,9 +41,50 @@ client.on('message', message => {
     })
     .catch(console.error);
     });
-  }else{
+
+    googleTranslate.translate(message.content, 'en', function(err, translation) {
+    client.channels.fetch(idSalonEN)
+    .then(channel => 
+    {
+      channel.send(`||${message.content}||`);
+      channel.send(translation.translatedText);  
+    })
+    .catch(console.error);
+    });
+
+  }else if (message.channel.id == idSalonIT){
     googleTranslate.translate(message.content, 'fr', function(err, translation) {
       client.channels.fetch(idSalonFR)
+      .then(channel => 
+      {
+        channel.send(`||${message.content}||`);
+        channel.send(translation.translatedText);  
+      })
+      .catch(console.error);
+    });
+
+    googleTranslate.translate(message.content, 'it', function(err, translation) {
+      client.channels.fetch(idSalonEN)
+      .then(channel => 
+      {
+        channel.send(`||${message.content}||`);
+        channel.send(translation.translatedText);  
+      })
+      .catch(console.error);
+    });
+  } else if (message.channel.id == idSalonEN){
+    googleTranslate.translate(message.content, 'fr', function(err, translation) {
+      client.channels.fetch(idSalonFR)
+      .then(channel => 
+      {
+        channel.send(`||${message.content}||`);
+        channel.send(translation.translatedText);  
+      })
+      .catch(console.error);
+    });
+
+    googleTranslate.translate(message.content, 'it', function(err, translation) {
+      client.channels.fetch(idIT)
       .then(channel => 
       {
         channel.send(`||${message.content}||`);
